@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   # get '/restaurants/:id/edit', to: 'restaurants#edit'"
   # get '/restaurants/:id', to: 'restaurants#show'"
   # patch '/restaurants/:id', to: 'restaurants#update'"
-  resources :cocktails, only: [:index, :show, :new, :create]
+  resources :cocktails, only: [:index, :show, :new, :create] do
+      resources :doses, only: :create
+    end
+  resources :doses, only: :destroy
+
+
+
 
 end
