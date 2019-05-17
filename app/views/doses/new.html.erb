@@ -1,0 +1,11 @@
+<h1>Add an ingredient</h1>
+
+<!-- Create simple form with dropdown for ingredients -->
+<%= simple_form_for ([@cocktail, @dose]) do |f| %>
+  <%= f.input :description %>
+  <%= f.association :ingredient, collection: @ingredients.order(:name), prompt: "Choose ingredients" %>
+  <%= f.submit class: "btn btn-success" %>
+<% end %>
+
+<!-- Back button -->
+<%= link_to 'Back', cocktail_path(@cocktail.id), class: "btn btn-danger" %>

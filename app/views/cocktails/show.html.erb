@@ -1,9 +1,23 @@
-<%= @cocktail.name  %>
+<div class="container-show">
+  <%= @cocktail.name  %>
 
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.input :description %>
-  <%= f.association :ingredient, collection: Ingredient.all.order(:name), prompt: "Choose an ingredient" %>
 
-  <%= f.submit "Add a new ingredient", class: "btn btn-primary" %>
-<% end %>
+    <ul>
+      <h3 class="detail-header">How to</h3>
+      <% @cocktail.doses.each do |dose| %>
+        <li> <%= dose.description %> of <%= dose.ingredient.name %>
+          <%= link_to 'Delete', cocktail_dose_path(@cocktail.id, dose.id), method: :delete %> </li>
+      <% end %>
+    </ul>
 
+
+  <%= simple_form_for [@cocktail, @dose] do |f| %>
+    <%= f.input :description %>
+    <%= f.association :ingredient, collection: Ingredient.all.order(:name), prompt: "Choose an ingredient" %>
+
+    <%= f.submit "Add a new ingredient", class: "btn btn-primary" %>
+  <% end %>
+  <br>
+  <p><%= link_to 'Back', cocktails_path, class: "btn btn-lg btn-danger" %></p>
+
+</div>
